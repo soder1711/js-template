@@ -8,7 +8,7 @@ for (let i = 1; i <= number; i++) {
   for (let j = 1; j <= number; j++) {
     column = document.createElement("td");
     let product = i * j;
-    column.textContent = product;
+    column.textContent = i*j;
     row.appendChild(column);
   }
   table.appendChild(row);
