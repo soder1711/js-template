@@ -1,14 +1,14 @@
 // your code here
 const table = document.querySelector("table");
 const dialog = document.querySelector("dialog");
-async function getMenu(restaurant) {
+const getMenu = async (restaurant) => {
   const response = await fetch(`https://media2.edu.metropolia.fi/restaurant/api/v1/restaurants/daily/${restaurant._id}/en`);
   if (!response.ok) {
     throw new Error("Error" + response.status);
   }
   return await response.json();
 }
-async function getRestaurants() {
+const getRestaurants = async () => {
   const response = await fetch("https://media2.edu.metropolia.fi/restaurant/api/v1/restaurants");
   const restaurants = await response.json();
   const sortedRestaurants = restaurants.slice().sort((a, b) => a.name.localeCompare(b.name));
@@ -16,8 +16,9 @@ async function getRestaurants() {
     const row = document.createElement("tr");
     row.innerHTML = `<td>${restaurant.name}</td><td>${restaurant.address}</td>`;
     table.appendChild(row);
+
     const name = row.querySelector("td");
-    name.addEventListener("click", async function () {
+    name.addEventListener("click", async () => {
       try {
         const highlighted = document.querySelectorAll('.highlight');
         for (let element of highlighted) {
@@ -31,7 +32,7 @@ async function getRestaurants() {
         }
         dialog.innerHTML += `<button id="close">Close</button>`;
         dialog.showModal();
-        document.querySelector('#close').addEventListener('click', function() {
+        document.querySelector('#close').addEventListener('click', () => {
           dialog.close();
         });
       }
@@ -42,3 +43,8 @@ async function getRestaurants() {
   }
 }
 getRestaurants();
+
+
+
+
+
